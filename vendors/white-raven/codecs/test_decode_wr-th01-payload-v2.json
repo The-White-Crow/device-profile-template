@@ -1,0 +1,385 @@
+[
+  {
+    "name": "V2: Room temperature and humidity",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        80
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 25,
+        "humidity": 55,
+        "battery": 80
+      }
+    }
+  },
+  {
+    "name": "V2: Negative temperature",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        251,
+        46,
+        17,
+        215,
+        80
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": -12.34,
+        "humidity": 45.67,
+        "battery": 80
+      }
+    }
+  },
+  {
+    "name": "V2: Zero readings",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        0,
+        0,
+        0,
+        0,
+        80
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 0,
+        "humidity": 0,
+        "battery": 80
+      }
+    }
+  },
+  {
+    "name": "V2: Minimum temperature maximum humidity",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        240,
+        96,
+        39,
+        16,
+        80
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": -40,
+        "humidity": 100,
+        "battery": 80
+      }
+    }
+  },
+  {
+    "name": "V2: Maximum temperature",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        48,
+        212,
+        0,
+        0,
+        80
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 125,
+        "humidity": 0,
+        "battery": 80
+      }
+    }
+  },
+  {
+    "name": "V2: Short payload",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        1,
+        2,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 5 payload bytes"
+      ]
+    }
+  },
+  {
+    "name": "V2: Long payload",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 5 payload bytes"
+      ]
+    }
+  },
+  {
+    "name": "V2: Byte out of range",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        256,
+        0,
+        0,
+        0,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Payload bytes must be integers between 0 and 255"
+      ]
+    }
+  },
+  {
+    "name": "V2: Fractional byte",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        1.5,
+        0,
+        0,
+        0,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Payload bytes must be integers between 0 and 255"
+      ]
+    }
+  },
+  {
+    "name": "V2: String byte",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        "9",
+        196,
+        21,
+        124,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Payload bytes must be integers between 0 and 255"
+      ]
+    }
+  },
+  {
+    "name": "V2: Humidity too high",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        39,
+        17,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Relative humidity must be between 0 and 100 percent"
+      ]
+    }
+  },
+  {
+    "name": "V2: Temperature too low",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        240,
+        95,
+        0,
+        0,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Temperature must be between -40 and 125 degrees Celsius"
+      ]
+    }
+  },
+  {
+    "name": "V2: Temperature too high",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        48,
+        213,
+        0,
+        0,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Temperature must be between -40 and 125 degrees Celsius"
+      ]
+    }
+  },
+  {
+    "name": "V2: Wrong port",
+    "input": {
+      "fPort": 2,
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected FPort 1"
+      ]
+    }
+  },
+  {
+    "name": "V2: Missing port",
+    "input": {
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        80
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected FPort 1"
+      ]
+    }
+  },
+  {
+    "name": "V2: Missing bytes",
+    "input": {
+      "fPort": 1
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 5 payload bytes"
+      ]
+    }
+  },
+  {
+    "name": "V2: battery 0%",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        0
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 25,
+        "humidity": 55,
+        "battery": 0
+      }
+    }
+  },
+  {
+    "name": "V2: battery 100%",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        100
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 25,
+        "humidity": 55,
+        "battery": 100
+      }
+    }
+  },
+  {
+    "name": "V2: reject battery 101",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        101
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Battery percentage must be between 0 and 100"
+      ]
+    }
+  },
+  {
+    "name": "V2: reject battery 255",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124,
+        255
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Battery percentage must be between 0 and 100"
+      ]
+    }
+  },
+  {
+    "name": "V2: reject v1 packet without battery",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 5 payload bytes"
+      ]
+    }
+  }
+]
+

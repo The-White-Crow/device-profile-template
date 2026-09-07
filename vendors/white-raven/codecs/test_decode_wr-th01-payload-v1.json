@@ -1,0 +1,271 @@
+[
+  {
+    "name": "Room temperature and humidity",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        21,
+        124
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 25,
+        "humidity": 55
+      }
+    }
+  },
+  {
+    "name": "Negative temperature",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        251,
+        46,
+        17,
+        215
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": -12.34,
+        "humidity": 45.67
+      }
+    }
+  },
+  {
+    "name": "Zero readings",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 0,
+        "humidity": 0
+      }
+    }
+  },
+  {
+    "name": "Minimum temperature maximum humidity",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        240,
+        96,
+        39,
+        16
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": -40,
+        "humidity": 100
+      }
+    }
+  },
+  {
+    "name": "Maximum temperature",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        48,
+        212,
+        0,
+        0
+      ]
+    },
+    "expected": {
+      "data": {
+        "temperature": 125,
+        "humidity": 0
+      }
+    }
+  },
+  {
+    "name": "Short payload",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        1,
+        2
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 4 payload bytes"
+      ]
+    }
+  },
+  {
+    "name": "Long payload",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 4 payload bytes"
+      ]
+    }
+  },
+  {
+    "name": "Byte out of range",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        256,
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Payload bytes must be integers between 0 and 255"
+      ]
+    }
+  },
+  {
+    "name": "Fractional byte",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        1.5,
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Payload bytes must be integers between 0 and 255"
+      ]
+    }
+  },
+  {
+    "name": "String byte",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        "9",
+        196,
+        21,
+        124
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Payload bytes must be integers between 0 and 255"
+      ]
+    }
+  },
+  {
+    "name": "Humidity too high",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        9,
+        196,
+        39,
+        17
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Relative humidity must be between 0 and 100 percent"
+      ]
+    }
+  },
+  {
+    "name": "Temperature too low",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        240,
+        95,
+        0,
+        0
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Temperature must be between -40 and 125 degrees Celsius"
+      ]
+    }
+  },
+  {
+    "name": "Temperature too high",
+    "input": {
+      "fPort": 1,
+      "bytes": [
+        48,
+        213,
+        0,
+        0
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Temperature must be between -40 and 125 degrees Celsius"
+      ]
+    }
+  },
+  {
+    "name": "Wrong port",
+    "input": {
+      "fPort": 2,
+      "bytes": [
+        9,
+        196,
+        21,
+        124
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected FPort 1"
+      ]
+    }
+  },
+  {
+    "name": "Missing port",
+    "input": {
+      "bytes": [
+        9,
+        196,
+        21,
+        124
+      ]
+    },
+    "expected": {
+      "errors": [
+        "Expected FPort 1"
+      ]
+    }
+  },
+  {
+    "name": "Missing bytes",
+    "input": {
+      "fPort": 1
+    },
+    "expected": {
+      "errors": [
+        "Expected exactly 4 payload bytes"
+      ]
+    }
+  }
+]

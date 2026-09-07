@@ -1,0 +1,61 @@
+{
+  "profiles": [
+    {
+      "catalog_device_id": "66f81612-6b81-4609-89d6-d2c5bcd861a3",
+      "firmware_version": "1.0.0",
+      "region": "EU868",
+      "idle_threshold_seconds": 7200,
+      "payload_descriptor": {
+        "temperature": {
+          "type": "number",
+          "label": "Temperature",
+          "unit": "°C",
+          "min": -40,
+          "max": 125,
+          "decimals": 2
+        },
+        "humidity": {
+          "type": "number",
+          "label": "Relative humidity",
+          "unit": "%RH",
+          "min": 0,
+          "max": 100,
+          "decimals": 2
+        }
+      }
+    },
+    {
+      "catalog_device_id": "66f81612-6b81-4609-89d6-d2c5bcd861a3",
+      "firmware_version": "2.0.0",
+      "region": "EU868",
+      "idle_threshold_seconds": 7200,
+      "payload_descriptor": {
+        "temperature": {
+          "type": "number",
+          "label": "Temperature",
+          "unit": "°C",
+          "min": -40,
+          "max": 125,
+          "decimals": 2
+        },
+        "humidity": {
+          "type": "number",
+          "label": "Relative humidity",
+          "unit": "%RH",
+          "min": 0,
+          "max": 100,
+          "decimals": 2
+        },
+        "battery": {
+          "type": "integer",
+          "label": "Battery",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "decimals": 0
+        }
+      }
+    }
+  ]
+}
+

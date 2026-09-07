@@ -1,0 +1,24 @@
+[vendor]
+# Stable catalog identity, generated locally; not a LoRa Alliance Vendor ID.
+# Keep this UUID across imports, name changes and new device models.
+id = "74dd9e64-1a8e-48ed-967a-0e846e45d762"
+name = "TheWhiteRaven"
+
+# Replace only with the numeric Vendor ID officially assigned by LoRa Alliance.
+# Zero is the ChirpStack example/default placeholder, not an assigned identity.
+# Do not use it as a production QR-code Vendor ID.
+vendor_id = 0
+
+# IEEE-assigned OUIs owned by this vendor: six hexadecimal digits per entry,
+# without separators. No ownership has been confirmed, so leave this empty.
+# Do not copy the prefix of a purchased radio module or another manufacturer's EUI.
+ouis = []
+
+# Device filenames relative to this vendor's devices/ directory.
+devices = [
+    "wr-th01.toml",
+]
+
+[vendor.metadata]
+# Use the project repository until a dedicated vendor website exists.
+homepage = "https://github.com/The-White-Crow/device-profile-template"

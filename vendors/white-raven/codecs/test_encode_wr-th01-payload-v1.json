@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Reject unsupported application downlink",
+    "input": {
+      "data": {
+        "temperature": 22
+      }
+    },
+    "expected": {
+      "errors": [
+        "Application downlinks are not supported by SHT40 example firmware 1.0.0"
+      ]
+    }
+  }
+]

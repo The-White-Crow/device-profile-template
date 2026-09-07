@@ -1,0 +1,42 @@
+[profile]
+# Shared network capabilities for WR-TH01 firmware 1.0.0 and 2.0.0.
+# Private example number, not evidence of an assigned LoRa Alliance identity.
+vendor_profile_id = 1
+region = "EU868"
+mac_version = "1.0.4"
+reg_params_revision = "RP002-1.0.3"
+supports_otaa = true
+supports_class_b = false
+supports_class_c = false
+# Example board capability in dBm; verify against the actual radio and antenna.
+max_eirp = 16
+
+# Inactive while supports_otaa=true; included to document an EU868 ABP example.
+[profile.abp]
+rx1_delay = 1
+rx1_dr_offset = 0
+rx2_dr = 0
+rx2_freq = 869525000
+
+# Inactive while supports_class_b=false.
+[profile.class_b]
+timeout_secs = 120
+# ChirpStack's current importer uses ping_slot_periodicity, not ping_slot_nb_k.
+ping_slot_periodicity = 0
+ping_slot_dr = 0
+ping_slot_freq = 869525000
+
+# Inactive while supports_class_c=false.
+[profile.class_c]
+timeout_secs = 120
+
+# No application-layer clock sync, fragmentation or multicast package is
+# implemented by this example. Empty versions disable these packages;
+# zero ports are inactive placeholders, not application payload ports.
+[profile.app_layer_params]
+ts003_version = ""
+ts003_f_port = 0
+ts004_version = ""
+ts004_f_port = 0
+ts005_version = ""
+ts005_f_port = 0

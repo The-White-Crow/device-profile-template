@@ -1,0 +1,16 @@
+[
+  {
+    "name": "V2: reject unsupported downlink",
+    "input": {
+      "data": {
+        "battery": 80
+      }
+    },
+    "expected": {
+      "errors": [
+        "Application downlinks are not supported by WR-TH example firmware 2.0.0"
+      ]
+    }
+  }
+]
+
