@@ -2,7 +2,7 @@
 # Stable model identity: keep this UUID when renaming the device or adding firmware.
 id = "66f81612-6b81-4609-89d6-d2c5bcd861a3"
 name = "WR-TH01 Temperature and Humidity"
-description = "Example White Raven WR-TH01 LoRaWAN node using an SHT40 sensor. Firmware 1.0.0 reports temperature and humidity; firmware 2.0.0 adds battery percentage. Both use FPort 1. These are project payload contracts, not a Sensirion protocol."
+description = "White Raven WR-TH01 LoRaWAN node using an SHT40 sensor. Firmware 1.0.0 reports temperature and humidity; firmware 2.0.0 adds battery percentage. Both use FPort 1. These are project payload contracts, not a Sensirion protocol."
 
 [device.metadata]
 # This URL describes the sensor component, not a certified White Raven product.
@@ -12,7 +12,7 @@ sensor_manufacturer = "Sensirion"
 sensor_model = "SHT40"
 sensor_interface = "I2C"
 measurements = "temperature,humidity; battery in firmware 2.0.0"
-power_source = "battery (example node design)"
+power_source = "battery"
 uplink_f_port = "1"
 payload_format_v1 = "4 bytes: int16 temperature x100, uint16 humidity x100; big-endian"
 payload_format_v2 = "5 bytes: payload v1 followed by uint8 battery percentage (0..100)"
